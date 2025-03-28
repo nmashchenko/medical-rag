@@ -74,6 +74,8 @@ class MedicalPaperPreprocessor:
 
         - Fix hyphenated line breaks.
         - Remove excessive newlines and spaces.
+        - Remove any non-ASCII (UTF-8) characters.
+        - Convert text to lowercase.
 
         Parameters:
         - text (str): Raw text.
@@ -87,6 +89,10 @@ class MedicalPaperPreprocessor:
         text = re.sub(r'\n+', '\n', text)
         # Replace multiple spaces or tabs with a single space
         text = re.sub(r'[ \t]+', ' ', text)
+        # Remove non-ASCII characters
+        text = text.encode('ascii', errors='ignore').decode('ascii')
+        # Convert text to lowercase
+        text = text.lower()
         return text.strip()
 
     def chunk_text(self, text):
