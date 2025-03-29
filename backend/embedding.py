@@ -1,5 +1,7 @@
 import torch
 import numpy as np
+import umap
+import matplotlib.pyplot as plt
 from transformers import BertModel, BertTokenizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -35,6 +37,20 @@ class Embedding:
         np.save('embeddings.npy', embeddings)
         print("Embeddings saved in file \'embeddings.npy\'")
         return embeddings
+    
+def graph_embeddings(embeddings):
+    embedding_array = np.array([embedding.detach().numpy() for embedding in embeddings])
+
+    umap_model = umap.UMAP(n_neighbors=15, min_dist=0.1, metric='cosine')
+    embedding_2d = umap_model.fit_transform(embedding_array)
+
+    plt.figure(figsize=(10, 8))
+    plt.scatter(embedding_2d[:, 0], embedding_2d[:, 1], alpha=0.5)
+
+    plt.title('UMAP Projection of Embeddings')
+    plt.xlabel('UMAP Dimension 1')
+    plt.ylabel('UMAP Dimension 2')
+    plt.show()
             
 def get_similarity(em1, em2):
     return cosine_similarity(em1.detach().numpy().reshape(1,-1), em2.detach().numpy().reshape(1,-1))
