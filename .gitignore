@@ -3,3 +3,7 @@
 
 # Python artifacts
 __pycache__/
+
+env/
+*.tar
+*.npy
