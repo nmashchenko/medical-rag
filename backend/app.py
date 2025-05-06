@@ -1,10 +1,12 @@
 from flask import Flask, request
-from embedding import Embedding, get_similarity
+from flask_cors import CORS
+from .embedding import Embedding, get_similarity
 from datetime import datetime
 import json
 import numpy as np
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 with open('pdf_chunks.json', 'r') as f:
     all_chunks = json.load(f)

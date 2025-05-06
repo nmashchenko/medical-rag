@@ -11,7 +11,7 @@ export type Message = {
 };
 
 // todo: env value here
-const AI_SERVER_URL = "https://localhost:8000/api/chat";
+const AI_SERVER_URL = "http://localhost:5000/api/chat";
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -57,7 +57,7 @@ export function useChat() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: userMessage.content,
+          content: userMessage.content,
         }),
       });
 
