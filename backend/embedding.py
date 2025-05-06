@@ -37,5 +37,7 @@ class Embedding:
         return embeddings
             
 def get_similarity(em1, em2):
-    return cosine_similarity(em1.detach().numpy().reshape(1,-1), em2.detach().numpy().reshape(1,-1))
+    em1 = em1.detach().numpy() if isinstance(em1, torch.Tensor) else em1
+    em2 = em2.detach().numpy() if isinstance(em2, torch.Tensor) else em2
+    return float(cosine_similarity(em1.reshape(1,-1), em2.reshape(1,-1))[0][0])
 
