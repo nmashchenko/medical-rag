@@ -1,13 +1,13 @@
-###  MedChat: An AI-Powered Chat Interface for Medical Research Papers
+#  MedChat: An AI-Powered Chat Interface for Medical Research Papers
 Here are instructions to run the web app
-# Frontend
+### Frontend
 Make sure you have npm and node.js installed.
 Inside ```/frontend/``` run
 ```npm install```
 ```npm run dev```
 This will run the frontend on ```localhost:3000```
 
-# Backend
+### Backend
 Make sure you have Python installed.
 Inside /backend/ create a (virtual environment) [https://docs.python.org/3/library/venv.html]
 Then, inside the virtual environment, run
