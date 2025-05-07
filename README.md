@@ -1,5 +1,8 @@
 #  MedChat: An AI-Powered Chat Interface for Medical Research Papers
-Here are instructions to run the web app:
+You can run the web app with the provided bash script:  
+```./start.sh```  
+  
+Here are instructions to run the web app manually:
 ### Frontend
 Make sure you have npm and node.js installed.
 Inside ```/frontend/``` run
