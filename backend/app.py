@@ -19,11 +19,11 @@ def get_papers():
     global all_chunks, embedding, embedder
     message = request.get_json()
     message_content = message["content"]
-    
+
     # get embedding of query
     message_embedding = embedder.embed_text([message_content])
     best_chunk = {"similarity_score" : 0}
-    
+
     # find chunk with highest similarity score
     for i in range(len(all_chunks)):
         curr_chunk = all_chunks[i]
@@ -37,8 +37,10 @@ def get_papers():
         "id": message["id"],
         "role": "assistant",
         "content": (
-            f"Source: http://arxiv.org/pdf/{best_chunk['source'][:-4]}\n"
-            f"Similarity: {best_chunk['similarity_score']}\n\n"
+            f"_URL to article:_ "
+            f"[http://arxiv.org/pdf/{best_chunk['source'][:-4]}]"
+            f"(http://arxiv.org/pdf/{best_chunk['source'][:-4]})  \n"
+            f"**Similarity:** {best_chunk['similarity_score']}  \n\n"
             f"{best_chunk['text']}"
         ),
         "timestamp": datetime.now().timestamp(),

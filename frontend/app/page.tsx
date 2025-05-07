@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { useChat } from "@/hooks/use-chat";
 
+import ReactMarkdown from "react-markdown";
+
 export default function ChatPage() {
   const { messages, input, setInput, sendMessage, isLoading } = useChat();
 
@@ -29,7 +31,7 @@ export default function ChatPage() {
                     : "bg-muted"
                 }`}
               >
-                {message.content}
+                <ReactMarkdown>{message.content}</ReactMarkdown>
               </div>
             </div>
           ))
