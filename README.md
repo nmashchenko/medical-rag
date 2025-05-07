@@ -9,7 +9,7 @@ This will run the frontend on ```localhost:3000```
 
 ### Backend
 Make sure you have Python installed.  
-Inside ```/backend/``` create a (virtual environment)[https://docs.python.org/3/library/venv.html]  
+Inside ```/backend/``` create a [virtual environment](https://docs.python.org/3/library/venv.html)  
 Then, inside the virtual environment, run  
 ```pip install -r requirements.txt```  
 ```python -m flask run```  
