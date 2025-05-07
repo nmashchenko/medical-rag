@@ -26,10 +26,15 @@ def get_papers():
         if similarity_score > best_chunk["similarity_score"]:
             curr_chunk["similarity_score"] = similarity_score
             best_chunk = curr_chunk
+
     return_value = {
         "id": message["id"],
         "role": "assistant",
-        "content": json.dumps(best_chunk),
+        "content": (
+            f"Source: {best_chunk['source']}\n"
+            f"Similarity: {best_chunk['similarity_score']}\n\n"
+            f"{best_chunk['text']}"
+        ),
         "timestamp": datetime.now().timestamp(),
     }
     # print(return_value)

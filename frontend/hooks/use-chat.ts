@@ -11,7 +11,7 @@ export type Message = {
 };
 
 // todo: env value here
-const AI_SERVER_URL = "http://localhost:5000/api/chat";
+const AI_SERVER_URL = "http://127.0.0.1:5000/api/chat";
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -58,6 +58,9 @@ export function useChat() {
         },
         body: JSON.stringify({
           content: userMessage.content,
+          id: uuidv4(),
+          role: "user",
+          timestamp: Date.now(),
         }),
       });
 
@@ -70,7 +73,7 @@ export function useChat() {
       const aiMessage: Message = {
         id: uuidv4(),
         role: "assistant",
-        content: data.response || "Sorry, I couldn't process your request.",
+        content: data.content || "Sorry, I couldn't process your request.",
         timestamp: Date.now(),
       };
 
